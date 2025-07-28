@@ -1,0 +1,19 @@
+name: FTP Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: FTP Upload
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          ftp-server: ftp://380405.w5.wedos.net
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./  
+          server-dir: /www/
